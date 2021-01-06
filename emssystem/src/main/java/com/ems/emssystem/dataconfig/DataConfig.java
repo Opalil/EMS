@@ -1,4 +1,4 @@
-package com.ems.emssystem.dao;
+package com.ems.emssystem.dataconfig;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +19,9 @@ public class DataConfig {
 
     Properties props = new Properties();
 
+    /**
+     *
+     */
     private void setProperties(){
         try {
             FileReader fr = new FileReader(propsFile);
@@ -33,11 +36,12 @@ public class DataConfig {
 
     @Bean
     public DataSource getDataSource() {
+        // Set properties variables
         setProperties();
 
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        // Make better way to read Connection URL (e.g. scan environment variable)
+        // Make better way to read Connection URL (e.g. scan environment variable for SQL Server instance)
         dataSourceBuilder.url(DB_Conn_URL);
         dataSourceBuilder.username(DB_USER);
         dataSourceBuilder.password(DB_USER_PW);
