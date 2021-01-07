@@ -3,11 +3,14 @@ package com.ems.emssystem.service;
 import com.ems.emssystem.dto.mapper.EmployeeMapper;
 import com.ems.emssystem.dto.model.EmployeeDto;
 import com.ems.emssystem.model.Employee;
+import com.ems.emssystem.model.Role;
 import com.ems.emssystem.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -26,11 +29,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     /**
      *
-     * @param email_address
+     * @param
      * @return
      */
-    public Employee findByEmail(String email_address){
-        return employeeRepository.findByEmail(email_address);
+    public List<Employee> findAllEmployeesAndRoles(){
+        return employeeRepository.findAllEmployeesAndRoles();
     }
 
     /**
